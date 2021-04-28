@@ -7,8 +7,9 @@ import java.util.HashMap;
 public class Student {
 	String name;
 	ArrayList<Subject> subjectArrayList;
+	Predmet predmet;
 
-	public Student(String name, ArrayList<Subject> subject){
+	public Student(String name, ArrayList<Subject> subject) {
 		this.name = name;
 		this.subjectArrayList = subject;
 	}
@@ -28,8 +29,28 @@ public class Student {
 		this.name = name;
 	}
 
-//	public Subject getSubject() {
-//		return subject;
-//	}
 
+	public Predmet getPredmet() {
+		return predmet;
+	}
+
+	public void setPredmet(final Predmet predmet) {
+		this.predmet = predmet;
+	}
+
+	public FinalResult checkGrades(ArrayList<Subject> grades) throws InvalidGradeException {
+		FinalResult vysledekStudenta = null;
+		for (Subject grade : grades) {
+			if (grade.getGrade() == 5) {
+				vysledekStudenta = FinalResult.NEPROSPEL;
+			} else if (grade.getGrade() != 1) {
+				vysledekStudenta = FinalResult.PROSPEL;
+			} else if (grade.getGrade() == 1) {
+				vysledekStudenta = FinalResult.PROSPEL_S_VYZNAMENANIM;
+			}
+		}
+		if (vysledekStudenta != null) {
+			return vysledekStudenta;
+		} else throw new InvalidGradeException("Invalid grade was inserted.");
+	}
 }
