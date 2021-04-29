@@ -1,17 +1,15 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * @author ondrej.hosek
  */
 public class Student {
 	String name;
-	ArrayList<Subject> subjectArrayList;
-	Predmet predmet;
+	ArrayList<Result> resultArrayList;
 
-	public Student(String name, ArrayList<Subject> subject) {
+	public Student(String name, ArrayList<Result> result) {
 		this.name = name;
-		this.subjectArrayList = subject;
+		this.resultArrayList = result;
 	}
 
 
@@ -20,37 +18,21 @@ public class Student {
 
 	}
 
-	public void setName(final String name) {
-		this.name = name;
-	}
+//	check the whole list
+	public FinalResult checkGrades(ArrayList<Result> grades) throws InvalidGradeException {
 
-
-	public Student(final String name) {
-		this.name = name;
-	}
-
-
-	public Predmet getPredmet() {
-		return predmet;
-	}
-
-	public void setPredmet(final Predmet predmet) {
-		this.predmet = predmet;
-	}
-
-	public FinalResult checkGrades(ArrayList<Subject> grades) throws InvalidGradeException {
-		FinalResult vysledekStudenta = null;
-		for (Subject grade : grades) {
+		FinalResult studentResult = null;
+		for (Result grade : grades) {
 			if (grade.getGrade() == 5) {
-				vysledekStudenta = FinalResult.NEPROSPEL;
+				studentResult = FinalResult.NEPROSPEL;
 			} else if (grade.getGrade() != 1) {
-				vysledekStudenta = FinalResult.PROSPEL;
+				studentResult = FinalResult.PROSPEL;
 			} else if (grade.getGrade() == 1) {
-				vysledekStudenta = FinalResult.PROSPEL_S_VYZNAMENANIM;
+				studentResult = FinalResult.PROSPEL_S_VYZNAMENANIM;
 			}
 		}
-		if (vysledekStudenta != null) {
-			return vysledekStudenta;
+		if (studentResult != null) {
+			return studentResult;
 		} else throw new InvalidGradeException("Invalid grade was inserted.");
 	}
 }

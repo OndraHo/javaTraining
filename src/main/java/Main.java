@@ -6,14 +6,17 @@ import java.util.ArrayList;
 public class Main {
 	public static void main(String[] args) throws InvalidGradeException {
 
-		ArrayList<Subject> fanoviZnamky = new ArrayList<>();
-		Subject cestinaZaJedna = new Subject("Cestina", 1);
-		Subject matikaDva = new Subject("matikaZaDva", 5);
+		ArrayList<Result> fanoviZnamky = new ArrayList<>();
+		Result cestinaZaJedna = new Result(Subject.CESTINA, 1);
+		Result matika = new Result(Subject.MATEMATIKA, 3);
+		Result telocvik = new Result(Subject.TELOCVIK, 2);
+		Result fyzika = new Result(Subject.FYZIKA, 4);
 		fanoviZnamky.add(cestinaZaJedna);
-		fanoviZnamky.add(matikaDva);
+		fanoviZnamky.add(matika);
+		fanoviZnamky.add(telocvik);
+		fanoviZnamky.add(fyzika);
 		Student franta = new Student("Franta Pepa Jednicka", fanoviZnamky);
 
-//		System.out.println(franta.getName() + " dostal " + fanoviZnamky.get(0).getNameOfSubject() + " " + fanoviZnamky.get(0).getGrade());
 		System.out.println(franta.checkGrades(fanoviZnamky));
 	}
 }
