@@ -1,4 +1,5 @@
 import enums.Grade;
+import enums.Subject;
 
 /**
  * @author ondrej.hosek

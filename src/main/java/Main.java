@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 import enums.Grade;
+import enums.Subject;
 import exception.InvalidGradeException;
 
 /**
@@ -21,5 +22,6 @@ public class Main {
 		Student franta = new Student("Franta Pepa Jednicka", fanovyZnamky);
 
 		System.out.println(franta.checkGrades(fanovyZnamky));
+//		Jeste muzu vytisknout jednotlive znamky....
 	}
 }

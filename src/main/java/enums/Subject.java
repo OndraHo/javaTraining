@@ -1,3 +1,5 @@
+package enums;
+
 /**
  * @author ondrej.hosek
  */
