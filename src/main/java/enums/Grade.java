@@ -1,7 +1,9 @@
+package enums;
+
 /**
  * @author ondrej.hosek
  */
-public enum Znamka {
+public enum Grade {
 	jednicka,
 	dvojka,
 	trojka,

@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+import enums.FinalResult;
+import enums.Grade;
+import exception.InvalidGradeException;
+
 /**
  * @author ondrej.hosek
  */
@@ -12,27 +16,27 @@ public class Student {
 		this.resultArrayList = result;
 	}
 
-
-	public String getName() {
-		return name;
-
+	public FinalResult checkGrades(ArrayList<Result> grades) throws InvalidGradeException {
+		ArrayList<Grade> gradeArrayList = pomocna(grades);
+		if (gradeArrayList.contains(Grade.petka)) {
+			return FinalResult.NEPROSPEL;
+		} else if (sameJednicky(gradeArrayList)) {
+			return FinalResult.PROSPEL_S_VYZNAMENANIM;
+		} else if (!gradeArrayList.contains(Grade.petka)) {
+			return FinalResult.PROSPEL;
+		}
+		throw new InvalidGradeException("");
 	}
 
-//	check the whole list
-	public FinalResult checkGrades(ArrayList<Result> grades) throws InvalidGradeException {
+	private boolean sameJednicky(final ArrayList<Grade> gradeArrayList) {
+		return !gradeArrayList.contains(Grade.dvojka) && !gradeArrayList.contains(Grade.trojka) && !gradeArrayList.contains(Grade.ctyrka);
+	}
 
-		FinalResult studentResult = null;
-		for (Result grade : grades) {
-			if (grade.getGrade() == 5) {
-				studentResult = FinalResult.NEPROSPEL;
-			} else if (grade.getGrade() != 1) {
-				studentResult = FinalResult.PROSPEL;
-			} else if (grade.getGrade() == 1) {
-				studentResult = FinalResult.PROSPEL_S_VYZNAMENANIM;
-			}
+	private ArrayList<Grade> pomocna(ArrayList<Result> grades) {
+		ArrayList<Grade> gradeArrayList = new ArrayList<>();
+		for (Result result : grades) {
+			gradeArrayList.add(result.getGrade());
 		}
-		if (studentResult != null) {
-			return studentResult;
-		} else throw new InvalidGradeException("Invalid grade was inserted.");
+		return gradeArrayList;
 	}
 }
